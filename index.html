@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos y configuración del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web personal de Santiago Posada Osorio, estudiante de ASIR">
+    <title>Santiago Posada Osorio | ASIR y ciberseguridad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cabecera y navegación principal -->
+    <header class="hero" id="inicio">
+        <nav class="navbar" aria-label="Navegación principal">
+            <a class="logo" href="#inicio">SPO</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#hecho">Experiencia</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#gustos">Intereses</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <!-- Imagen personal utilizada como banner principal -->
+        <div class="hero-banner" role="img" aria-label="Paisaje de aventura con drones, tecnología y programación"></div>
+
+        <!-- Presentación principal -->
+        <div class="hero-content">
+            <p class="eyebrow">Marca personal · ASIR</p>
+            <h1>Santiago Posada Osorio</h1>
+            <p class="hero-text" id="typing-text">
+                Estudiante de ASIR interesado en la administración de sistemas y la ciberseguridad.
+            </p>
+            <div>
+                <a class="button" href="#sobre-mi">Conóceme</a>
+                <a class="button button-outline" href="#contacto">Contactar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Resumen rápido del perfil -->
+        <section class="section stats" aria-label="Resumen profesional">
+            <article class="stat-card"><strong data-counter="1">0</strong><span>ciclo actual</span></article>
+            <article class="stat-card"><strong data-counter="3">0</strong><span>áreas de interés</span></article>
+            <article class="stat-card"><strong data-counter="100">0</strong><span>ganas de aprender</span></article>
+        </section>
+
+        <!-- Presentación personal -->
+        <section class="section about" id="sobre-mi">
+            <div class="section-heading">
+                <p class="eyebrow">01 — Perfil</p>
+                <h2>Sobre mí</h2>
+            </div>
+            <div class="about-content">
+                <p>Soy una persona resolutiva, inquieta y apasionada por la tecnología. Me gusta investigar cómo funcionan los sistemas y buscar soluciones prácticas.</p>
+                <p>Actualmente estudio Administración de Sistemas Informáticos en Red (ASIR) en el IES Simarro. Mi meta profesional es trabajar como administrador de sistemas especializado en ciberseguridad.</p>
+            </div>
+        </section>
+
+        <!-- Formación, proyectos y objetivos -->
+        <section class="section" id="hecho">
+            <div class="section-heading">
+                <p class="eyebrow">02 — Trayectoria</p>
+                <h2>Lo que he hecho</h2>
+            </div>
+            <button class="reveal-button" id="reveal-button" type="button" aria-expanded="false">Mostrar mis logros</button>
+            <div class="cards collapsible" id="achievements">
+                <article class="card"><span class="card-number">01</span><h3>Formación en SMR</h3><p>He completado un grado medio de Sistemas Microinformáticos y Redes.</p></article>
+                <article class="card"><span class="card-number">02</span><h3>Estudios de ASIR</h3><p>Actualmente continúo mi formación en administración de sistemas y redes.</p></article>
+                <article class="card"><span class="card-number">03</span><h3>Proyecto personal</h3><p>Me gustaría construir una casa ideal aplicando tecnología, planificación y creatividad.</p></article>
+                <article class="card"><span class="card-number">04</span><h3>Volar drones</h3><p>Uno de mis hobbies es volar drones y explorar nuevas perspectivas.</p></article>
+            </div>
+        </section>
+
+        <!-- Habilidades e intereses profesionales -->
+        <section class="section" id="habilidades">
+            <div class="section-heading">
+                <p class="eyebrow">03 — Futuro profesional</p>
+                <h2>Lo que me interesa</h2>
+            </div>
+            <div class="likes-list skill-list">
+                <span>Administración de sistemas</span>
+                <span>Redes y servidores</span>
+                <span>Ciberseguridad</span>
+                <span>Automatización</span>
+            </div>
+        </section>
+
+        <!-- Aficiones personales con filtros -->
+        <section class="section likes" id="gustos">
+            <div class="section-heading">
+                <p class="eyebrow">04 — Vida personal</p>
+                <h2>Me gusta</h2>
+            </div>
+            <div class="filter-buttons" role="group" aria-label="Filtrar intereses">
+                <button class="filter-button active" data-filter="todos">Todos</button>
+                <button class="filter-button" data-filter="ocio">Ocio</button>
+                <button class="filter-button" data-filter="tecnologia">Tecnología</button>
+            </div>
+            <div class="likes-list" id="interest-list">
+                <span data-category="ocio">Fútbol</span>
+                <span data-category="ocio">Anime</span>
+                <span data-category="tecnologia">Tecnología</span>
+                <span data-category="ocio">Volar drones</span>
+                <span data-category="ocio">Naturaleza</span>
+            </div>
+        </section>
+
+        <!-- Formulario de contacto -->
+        <section class="section contact-section" id="contacto">
+            <div class="section-heading">
+                <p class="eyebrow">05 — Contacto</p>
+                <h2>Hablemos</h2>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" placeholder="Tu nombre" required>
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" placeholder="tu@email.com" required>
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+                <button class="button" type="submit">Enviar mensaje</button>
+                <p id="form-message" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>© <span id="year"></span> Santiago Posada Osorio</p>
+        <a href="mailto:santiago.posada@example.com">santiago.posada@example.com</a>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Volver arriba">↑</button>
+    <script src="script.js"></script>
+</body>
+</html>
