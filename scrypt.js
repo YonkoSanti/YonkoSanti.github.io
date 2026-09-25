@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelector("#nav-links");
     const heroText = document.querySelector(".hero-text");
     const cards = document.querySelector(".cards");
+    const revealButton = document.querySelector("#reveal-button");
+    const destructionButton = document.querySelector("#visual-destruction");
+    const destructionStatus = document.querySelector("#destruction-status");
+    const backToTop = document.querySelector("#back-to-top");
 
     /* Crea el botón de cambio de tema */
     const themeToggle = document.createElement("button");
@@ -30,6 +34,62 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", newTheme);
         updateThemeButton();
     });
+
+    /* Selector de paleta */
+    const paletteButtons = document.querySelectorAll(".palette-button");
+    const savedPalette = localStorage.getItem("palette") || "ocean";
+
+    body.dataset.palette = savedPalette;
+    paletteButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.palette === savedPalette);
+
+        button.addEventListener("click", () => {
+            const selectedPalette = button.dataset.palette;
+
+            body.dataset.palette = selectedPalette;
+            localStorage.setItem("palette", selectedPalette);
+            paletteButtons.forEach((paletteButton) => {
+                paletteButton.classList.toggle("active", paletteButton === button);
+            });
+        });
+    });
+
+    /* Destrucción visual temporal */
+    if (destructionButton && destructionStatus) {
+        destructionButton.addEventListener("click", () => {
+            let secondsRemaining = 5;
+
+            body.classList.add("visual-destruction");
+            destructionButton.disabled = true;
+            destructionStatus.hidden = false;
+            destructionStatus.textContent = `La página volverá a la normalidad en ${secondsRemaining} s`;
+
+            const countdown = window.setInterval(() => {
+                secondsRemaining--;
+
+                if (secondsRemaining === 0) {
+                    window.clearInterval(countdown);
+                    body.classList.remove("visual-destruction");
+                    destructionButton.disabled = false;
+                    destructionStatus.hidden = true;
+                    return;
+                }
+
+                destructionStatus.textContent = `La página volverá a la normalidad en ${secondsRemaining} s`;
+            }, 1000);
+        });
+    }
+
+    /* Botón para volver arriba */
+    if (backToTop) {
+        window.addEventListener("scroll", () => {
+            backToTop.hidden = window.scrollY < 400;
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 
     /* Menú responsive */
     if (menuToggle && navLinks) {
@@ -71,29 +131,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* Contador y despliegue de las cosas realizadas */
-    if (cards) {
+    if (cards && revealButton) {
         const cardCount = cards.querySelectorAll(".card").length;
-        const revealButton = document.createElement("button");
-
-        revealButton.className = "reveal-button";
-        revealButton.type = "button";
-        revealButton.textContent = `Ver mis ${cardCount} cosas realizadas`;
-        revealButton.setAttribute("aria-expanded", "false");
 
         cards.classList.add("collapsed");
-        cards.parentNode.insertBefore(revealButton, cards);
 
         revealButton.addEventListener("click", () => {
             const isCollapsed = cards.classList.toggle("collapsed");
             const isExpanded = !isCollapsed;
 
             revealButton.textContent = isExpanded
-                ? "Ocultar mis cosas realizadas"
-                : `Ver mis ${cardCount} cosas realizadas`;
+                ? "Ocultar mis logros"
+                : "Mostrar mis logros";
 
             revealButton.setAttribute("aria-expanded", String(isExpanded));
         });
     }
+
+    /* Filtros de intereses */
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const interests = document.querySelectorAll("#interest-list [data-category]");
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const selectedFilter = button.dataset.filter;
+
+            filterButtons.forEach((filterButton) => {
+                filterButton.classList.toggle("active", filterButton === button);
+            });
+
+            interests.forEach((interest) => {
+                const isVisible = selectedFilter === "todos"
+                    || interest.dataset.category === selectedFilter;
+
+                interest.hidden = !isVisible;
+            });
+        });
+    });
 
     /* Fondo de partículas */
     const canvas = document.createElement("canvas");

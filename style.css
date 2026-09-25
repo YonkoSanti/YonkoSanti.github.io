@@ -28,6 +28,20 @@
     --shadow: 0 20px 60px rgba(24, 73, 115, 0.15);
 }
 
+[data-palette="forest"] {
+    --primary: #67d391;
+    --primary-light: #b4f2c8;
+    --border: rgba(180, 242, 200, 0.24);
+    --surface-hover: #1d4b3a;
+}
+
+[data-palette="sunset"] {
+    --primary: #ff9b71;
+    --primary-light: #ffd0a8;
+    --border: rgba(255, 208, 168, 0.26);
+    --surface-hover: #5a3029;
+}
+
 /* Reset y configuración general */
 * {
     box-sizing: border-box;
@@ -99,6 +113,12 @@ button {
     background:
         linear-gradient(135deg, rgba(225, 241, 255, 0.96), rgba(158, 211, 250, 0.8)),
         radial-gradient(circle at 80% 20%, #63baff, transparent 35%);
+}
+
+[data-theme="light"] .hero-banner {
+    background-image:
+        linear-gradient(90deg, rgba(225, 241, 255, 0.88), rgba(225, 241, 255, 0.35)),
+        url("fondo.png");
 }
 
 /* Barra de navegación */
@@ -180,6 +200,47 @@ button {
     transform: translateY(-2px);
 }
 
+.palette-picker {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.palette-button {
+    width: 1.35rem;
+    height: 1.35rem;
+    padding: 0.18rem;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+}
+
+.palette-button span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--swatch);
+}
+
+.palette-button[data-palette="ocean"] {
+    --swatch: #39a0ff;
+}
+
+.palette-button[data-palette="forest"] {
+    --swatch: #67d391;
+}
+
+.palette-button[data-palette="sunset"] {
+    --swatch: #ff9b71;
+}
+
+.palette-button:hover,
+.palette-button.active {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
 /* Presentación */
 .hero-content {
     display: flex;
@@ -205,6 +266,11 @@ h1 {
     font-size: clamp(3rem, 9vw, 7rem);
     line-height: 0.95;
     letter-spacing: -0.06em;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="light"] h1 {
+    text-shadow: 0 4px 18px rgba(255, 255, 255, 0.8);
 }
 
 .hero-text {
@@ -375,6 +441,143 @@ h2 {
 
 .footer a:hover {
     text-decoration: underline;
+}
+
+.contact-placeholder {
+    align-self: end;
+    justify-self: end;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.visual-destruction-button {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 40;
+    padding: 0.7rem 1rem;
+    border: 1px solid #ff6b6b;
+    border-radius: 8px;
+    background: #32151d;
+    color: #ffd1d1;
+    font-weight: 800;
+    transition: transform var(--transition), background var(--transition);
+}
+
+.visual-destruction-button:hover:not(:disabled) {
+    background: #5c1e2a;
+    transform: translateY(-2px);
+}
+
+.visual-destruction-button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.destruction-status {
+    position: fixed;
+    bottom: 4.5rem;
+    left: 1.5rem;
+    z-index: 40;
+    margin: 0;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid #ff6b6b;
+    border-radius: 8px;
+    background: #210d13;
+    color: #ffd1d1;
+    font-size: 0.85rem;
+}
+
+body.visual-destruction {
+    background: #16070b;
+}
+
+body.visual-destruction::before {
+    position: fixed;
+    z-index: 35;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255, 30, 80, 0.08) 0 2px, transparent 2px 6px);
+    content: "";
+    animation: scanlines 0.12s steps(2, end) infinite;
+}
+
+body.visual-destruction .hero,
+body.visual-destruction main,
+body.visual-destruction .footer {
+    filter: saturate(2) contrast(1.35) hue-rotate(140deg);
+    animation: visual-break 0.22s steps(2, end) infinite;
+}
+
+body.visual-destruction .hero-content > *,
+body.visual-destruction .section-heading > *,
+body.visual-destruction .section > .likes-list,
+body.visual-destruction .section > .filter-buttons,
+body.visual-destruction .contact-form > *,
+body.visual-destruction .footer > * {
+    position: relative;
+    animation: fragment-break 0.55s steps(2, end) infinite alternate;
+}
+
+body.visual-destruction .hero-content > :nth-child(2n),
+body.visual-destruction .section-heading > :nth-child(2n),
+body.visual-destruction .contact-form > :nth-child(2n) {
+    animation-name: fragment-break-reverse;
+    animation-delay: -0.2s;
+}
+
+body.visual-destruction .card,
+body.visual-destruction .likes-list span {
+    animation: card-shatter 0.4s steps(2, end) infinite alternate;
+}
+
+body.visual-destruction .card:nth-child(2n),
+body.visual-destruction .likes-list span:nth-child(2n) {
+    animation-delay: -0.15s;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes visual-break {
+    0% { transform: translate(0, 0) skewX(0); }
+    50% { transform: translate(7px, -3px) skewX(1deg); }
+    100% { transform: translate(-5px, 3px) skewX(-1deg); }
+}
+
+@keyframes scanlines {
+    to { transform: translateY(6px); }
+}
+
+@keyframes fragment-break {
+    0% {
+        clip-path: polygon(0 0, 100% 4%, 96% 100%, 3% 94%);
+        transform: translate(-14px, 8px) rotate(-1deg);
+    }
+    100% {
+        clip-path: polygon(4% 5%, 96% 0, 100% 91%, 0 100%);
+        transform: translate(18px, -12px) rotate(2deg);
+    }
+}
+
+@keyframes fragment-break-reverse {
+    0% {
+        clip-path: polygon(3% 6%, 94% 0, 100% 96%, 0 90%);
+        transform: translate(16px, -9px) rotate(1deg);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 8%, 94% 100%, 5% 93%);
+        transform: translate(-20px, 13px) rotate(-2deg);
+    }
+}
+
+@keyframes card-shatter {
+    0% {
+        clip-path: polygon(0 3%, 97% 0, 100% 95%, 4% 100%);
+        transform: translate(-10px, 6px) rotate(-2deg) scale(0.98);
+    }
+    100% {
+        clip-path: polygon(4% 0, 100% 6%, 95% 100%, 0 94%);
+        transform: translate(12px, -8px) rotate(2deg) scale(1.02);
+    }
 }
 
 .copyright {
