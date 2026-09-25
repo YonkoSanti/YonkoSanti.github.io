@@ -1,22 +1,41 @@
-# Web personal de Santiago Posada Osorio
+# Santiago Posada Osorio
 
-Proyecto web personal creado para presentar el perfil de Santiago Posada Osorio, estudiante del ciclo de Administracion de Sistemas Informaticos en Red (ASIR) en el IES Francisco de Quevedo.
+### Estudiante de ASIR · Administración de sistemas · Ciberseguridad
 
-La pagina recoge informacion sobre mi formacion, mis habilidades, mis aficiones y mis objetivos profesionales relacionados con la administracion de sistemas, las redes y la ciberseguridad. Tambien incluye una seccion de contacto para facilitar la comunicacion.
+Web personal de Santiago Posada Osorio, estudiante de Administración de Sistemas Informáticos en Red (ASIR) en el IES Francisco de Quevedo. Un espacio para conocer mi formación, mis intereses y mis objetivos profesionales.
 
-El proyecto esta desarrollado con HTML, CSS y JavaScript. Ademas de mostrar la informacion personal, incorpora elementos interactivos como filtros de intereses, tarjetas desplegables, cambio de tema, selector de paletas de color, boton para volver al inicio y una animacion temporal de destruccion visual.
+<p align="center">
+  <a href="https://yonkosanti.github.io/"><strong>Visitar la web publicada →</strong></a>
+</p>
 
+## Sobre el proyecto
+
+La página presenta mi perfil y combina información personal con pequeñas interacciones para explorar el contenido.
+
+- Perfil, formación y objetivos profesionales.
+- Habilidades e intereses con filtros por categoría.
+- Logros que se pueden mostrar y ocultar.
+- Temas de color seleccionables que se conservan al volver.
+- Formulario de contacto y botón para volver al inicio.
 
 ## Cambios realizados
 
-1. Se corrigio la carga del archivo JavaScript para utilizar `scrypt.js`.
-2. Se anadieron filtros funcionales para los intereses de ocio y tecnologia.
-3. Se conecto el boton para mostrar y ocultar los logros.
-4. Se anadio un selector de paletas Oceano, Bosque y Atardecer.
-5. Las paletas seleccionadas se guardan al recargar la pagina.
-6. Se sustituyo el correo ficticio por `santiago.posada@educa.madrid.org`.
-7. Se anadio el boton de destruccion visual temporal con cuenta atras.
-8. Se intensifico la destruccion visual con fragmentos, desplazamientos, rotaciones y cortes irregulares.
-9. Se mejoro la visibilidad del nombre principal en modo claro.
-10. Se conecto la flecha para volver suavemente al inicio de la pagina.
-11. Se actualizo el centro educativo a IES Francisco de Quevedo.
+- Se conectaron los filtros de intereses, el desplegable de logros y las paletas de color con guardado de preferencias.
+- Se añadieron el efecto visual temporal con cuenta atrás y el desplazamiento suave para volver al inicio.
+- Se mejoró la visibilidad del nombre en modo claro y se actualizaron el centro educativo y el correo de contacto.
+
+## Tecnologías
+
+`HTML` · `CSS` · `JavaScript`
+
+## Archivos principales
+
+| Archivo | Descripción |
+| --- | --- |
+| `index.html` | Estructura y contenido de la página. |
+| `style.css` | Estilos y diseño adaptable. |
+| `scrypt.js` | Interacciones de la web. |
+
+## Contacto
+
+[santiago.posada@educa.madrid.org](mailto:santiago.posada@educa.madrid.org)
